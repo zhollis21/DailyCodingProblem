@@ -6,7 +6,7 @@ namespace DailyCodingProblem
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Problems1Through25.Problem1();
         }
     }
 }
