@@ -11,7 +11,6 @@ namespace DailyCodingProblem
 
 			while (true)
 			{
-
 				Console.WriteLine($"\nThe list is: {string.Join(", ", numbers)}");
 				Console.Write("Please enter a sum: ");
 
