@@ -8,7 +8,7 @@ namespace DailyCodingProblemUnitTests
     public class Problems1Through25Tests : Problems1Through25
     {
         [Theory]
-        [InlineData(9, false)]
+        [InlineData(9, true)]
         [InlineData(10, true)]
         [InlineData(11, false)]
         [InlineData(12, false)]
