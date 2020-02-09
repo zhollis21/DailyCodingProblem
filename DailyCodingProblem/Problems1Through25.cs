@@ -1,94 +1,104 @@
-﻿using System;
+﻿using DailyCodingProblem.Models;
+using System;
 using System.Collections.Generic;
 
 namespace DailyCodingProblem
 {
     public class Problems1Through25
     {
-        public static void UI_Problem1()
+        /// <summary>
+        /// Given a list of numbers and a number k, return whether 
+        /// any two numbers from the list add up to k. 
+        /// 
+        /// For example, given[10, 15, 3, 7] and k of 17, 
+        /// return true since 10 + 7 is 17.
+        /// </summary>
+        public static bool Problem1(List<int> numbers, int sum)
         {
-			List<int> numbers = new List<int>() { 1, 2, 4, 5, 8, 9 };
+            // Loop through the list trying every 2 element combination
+            for (int i = 0; i < numbers.Count - 1; i++)
+            {
+                for (int j = i + 1; j < numbers.Count; j++)
+                {
+                    if (numbers[i] + numbers[j] == sum)
+                    {
+                        Console.WriteLine($"Yes, {numbers[i]} + {numbers[j]} = {sum}");
+                        return true;
+                    }
+                }
+            }
 
-			while (true)
-			{
-				Console.WriteLine($"\nThe list is: {string.Join(", ", numbers)}");
-				Console.Write("Please enter a sum: ");
+            Console.WriteLine($"No two numbers in the listed added up to {sum}");
+            return false;
+        }
 
-				int sum;
-				while (!int.TryParse(Console.ReadLine(), out sum))
-				{
-					Console.Write("Error... Please enter a valid integer: ");
-				}
+        /// <summary>
+        /// Given an array of integers, return a new array such that each element 
+        /// at index i of the new array is the product of all the numbers in the 
+        /// original array except the one at i.
+        /// 
+        /// For example, if our input was [1, 2, 3, 4, 5], the expected output would 
+        /// be [120, 60, 40, 30, 24]. If our input was [3, 2, 1], the expected output 
+        /// would be [2, 3, 6].
+        /// </summary>
+        public static List<int> Problem2(List<int> numbers)
+        {
+            var productList = new List<int>();
 
-				Problem1(numbers, sum);
-			}
-		}
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                productList.Add(1);
 
-		/// <summary>
-		/// Given a list of numbers and a number k, return whether 
-		/// any two numbers from the list add up to k. 
-		/// 
-		/// For example, given[10, 15, 3, 7] and k of 17, 
-		/// return true since 10 + 7 is 17.
-		/// </summary>
-		protected static bool Problem1(List<int> numbers, int sum)
-		{
-			// Loop through the list trying every 2 element combination
-			for (int i = 0; i < numbers.Count - 1; i++)
-			{
-				for (int j = i + 1; j < numbers.Count; j++)
-				{
-					if (numbers[i] + numbers[j] == sum)
-					{
-						Console.WriteLine($"Yes, {numbers[i]} + {numbers[j]} = {sum}");
-						return true;
-					}
-				}
-			}
+                for (int j = 0; j < numbers.Count; j++)
+                {
+                    if (j == i)
+                        continue;
 
-			Console.WriteLine($"No two numbers in the listed added up to {sum}");
-			return false;
-		}
+                    productList[i] *= numbers[j];
+                }
+            }
 
-		public static void UI_Problem2()
-		{
-			var numbers1 = new List<int>() { 1, 2, 3, 4, 5 };
-			var numbers2 = new List<int>() { 3, 2, 1 };
+            return productList;
+        }
 
-			var productList1 = Problem2(numbers1);
-			var productList2 = Problem2(numbers2);
+        public static string Problem3Serialize(BinaryNode node)
+        {
+            if (node == null)
+                return "null,";
 
-			Console.WriteLine($"[{string.Join(", ", numbers1)}] -> [{string.Join(", ", productList1)}]\n");
-			Console.WriteLine($"[{string.Join(", ", numbers2)}] -> [{string.Join(", ", productList2)}]");
-		}
+            string serializedNode = node.Value + ",";
 
-		/// <summary>
-		/// Given an array of integers, return a new array such that each element 
-		/// at index i of the new array is the product of all the numbers in the 
-		/// original array except the one at i.
-		/// 
-		/// For example, if our input was [1, 2, 3, 4, 5], the expected output would 
-		/// be [120, 60, 40, 30, 24]. If our input was [3, 2, 1], the expected output 
-		/// would be [2, 3, 6].
-		/// </summary>
-		protected static List<int> Problem2(List<int> numbers)
-		{
-			var productList = new List<int>();
+            serializedNode += Problem3Serialize(node.LeftChild);
 
-			for (int i = 0; i < numbers.Count; i++)
-			{
-				productList.Add(1);
+            serializedNode += Problem3Serialize(node.RightChild);
 
-				for (int j = 0; j < numbers.Count; j++)
-				{
-					if (j == i)
-						continue;
+            return serializedNode;
+        }
 
-					productList[i] *= numbers[j];
-				}
-			}
+        public static BinaryNode Problem3Deserialize(string serializedBinaryTree)
+        {
+            string[] values = serializedBinaryTree.Split(',');
+            
+            DeserializeBinaryTree(out BinaryNode deserializedBinaryTree, values, 0);
 
-			return productList;
-		}
-	}
+            return deserializedBinaryTree;
+        }
+
+        private static int DeserializeBinaryTree(out BinaryNode currentNode, string[] values, int index)
+        {
+            int nodeValue;
+            if (!int.TryParse(values[index], out nodeValue))
+            {
+                currentNode = null;
+                return index;
+            }
+
+            index = DeserializeBinaryTree(out BinaryNode leftNode, values, index + 1);
+            index = DeserializeBinaryTree(out BinaryNode rightNode, values, index + 1);
+
+            currentNode = new BinaryNode(nodeValue, leftNode, rightNode);
+
+            return index;
+        }
+    }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DailyCodingProblem.Models;
+using System;
 
 namespace DailyCodingProblem
 {
@@ -6,9 +7,22 @@ namespace DailyCodingProblem
     {
         static void Main(string[] args)
         {
-            //Problems1Through25.UI_Problem1();
+            //Console.WriteLine("Run the unit tests...");
 
-            Problems1Through25.UI_Problem2();
+            var nodeTree =
+                new BinaryNode(
+                    0,
+                    new BinaryNode(
+                        1,
+                        new BinaryNode(11),
+                        null),
+                    new BinaryNode(2));
+
+            var ser = Problems1Through25.Problem3Serialize(nodeTree);
+            Console.WriteLine(ser);
+
+            var deser = Problems1Through25.Problem3Deserialize(ser);
+            Console.WriteLine(nodeTree == deser);
         }
     }
 }
