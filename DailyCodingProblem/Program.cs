@@ -1,5 +1,4 @@
-﻿using DailyCodingProblem.Models;
-using System;
+﻿using System;
 
 namespace DailyCodingProblem
 {
