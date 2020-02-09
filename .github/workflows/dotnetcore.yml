@@ -1,4 +1,4 @@
-name: .NET Core
+name: .NET Core Build and Test
 
 on:
   pull_request:
@@ -12,9 +12,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.100
+
     - name: Build with dotnet
       run: dotnet build ./DailyCodingProblem.sln --configuration Release
+
+    - name: Test with dotnet
+      run: dotnet test ./DailyCodingProblem.sln --configuration Release
