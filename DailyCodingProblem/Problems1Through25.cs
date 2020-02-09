@@ -78,7 +78,7 @@ namespace DailyCodingProblem
         public static BinaryNode Problem3Deserialize(string serializedBinaryTree)
         {
             string[] values = serializedBinaryTree.Split(',');
-            
+
             DeserializeBinaryTree(out BinaryNode deserializedBinaryTree, values, 0);
 
             return deserializedBinaryTree;

@@ -13,10 +13,6 @@ namespace DailyCodingProblem.Models
 
         public BinaryNode RightChild { get; set; }
 
-        public BinaryNode()
-        {
-        }
-
         public BinaryNode(int value)
         {
             Value = value;
@@ -38,9 +34,9 @@ namespace DailyCodingProblem.Models
         {
             BinaryNode otherNode = (BinaryNode)obj;
 
-            if (otherNode == null || 
-                this.Value != otherNode.Value || 
-                this.LeftChild != otherNode.LeftChild || 
+            if (otherNode == null ||
+                this.Value != otherNode.Value ||
+                this.LeftChild != otherNode.LeftChild ||
                 this.RightChild != otherNode.RightChild)
                 return false;
 

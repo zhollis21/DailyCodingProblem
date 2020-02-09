@@ -49,29 +49,197 @@ namespace DailyCodingProblemUnitTests
         }
 
         [Fact]
-        public void Problem3Serialize_Something_ReturnsExpectedString()
+        public void Problem3Serialize_RootIsNull_ReturnsExpectedString()
         {
-            var nodeTree = 
+            const string expected = "null,";
+
+            BinaryNode nodeTree = null;
+
+            string serializedNodeTree = Problems1Through25.Problem3Serialize(nodeTree);
+
+            Assert.Equal(expected, serializedNodeTree);
+        }
+
+        [Fact]
+        public void Problem3Serialize_RootOnlyTree_ReturnsExpectedString()
+        {
+            const string expected = "0,null,null,";
+
+            var nodeTree = new BinaryNode(0);
+
+            string serializedNodeTree = Problems1Through25.Problem3Serialize(nodeTree);
+
+            Assert.Equal(expected, serializedNodeTree);
+        }
+
+        [Fact]
+        public void Problem3Serialize_Partial2LayeredTree_ReturnsExpectedString()
+        {
+            const string expected = "0,null,2,null,null,";
+
+            var nodeTree =
                 new BinaryNode(
-                    0, 
-                    new BinaryNode(
-                        1, 
-                        new BinaryNode(11), 
-                        null), 
+                    0,
+                    null,
                     new BinaryNode(2));
 
             string serializedNodeTree = Problems1Through25.Problem3Serialize(nodeTree);
 
-            BinaryNode deserializedNodeTree = Problems1Through25.Problem3Deserialize(serializedNodeTree);
-
-            Assert.Equal(11, deserializedNodeTree.LeftChild.LeftChild.Value);
-            Assert.True(nodeTree == deserializedNodeTree);
+            Assert.Equal(expected, serializedNodeTree);
         }
 
-        //[Fact]
-        //public void Problem3Deserialize_TODO_ReturnsExpectedBinaryTree()
-        //{
+        [Fact]
+        public void Problem3Serialize_Full2LayeredTree_ReturnsExpectedString()
+        {
+            const string expected = "0,1,null,null,2,null,null,";
 
-        //}
+            var nodeTree =
+                new BinaryNode(
+                    0,
+                    new BinaryNode(1),
+                    new BinaryNode(2));
+
+            string serializedNodeTree = Problems1Through25.Problem3Serialize(nodeTree);
+
+            Assert.Equal(expected, serializedNodeTree);
+        }
+
+        [Fact]
+        public void Problem3Serialize_Partial3LayeredTree_ReturnsExpectedString()
+        {
+            const string expected = "0,1,11,null,null,null,2,null,null,";
+
+            var nodeTree =
+                new BinaryNode(
+                    0,
+                    new BinaryNode(
+                        1,
+                        new BinaryNode(11),
+                        null),
+                    new BinaryNode(2));
+
+            string serializedNodeTree = Problems1Through25.Problem3Serialize(nodeTree);
+
+            Assert.Equal(expected, serializedNodeTree);
+        }
+
+        [Fact]
+        public void Problem3Serialize_Full3LayeredTree_ReturnsExpectedString()
+        {
+            const string expected = "0,1,11,null,null,12,null,null,2,21,null,null,22,null,null,";
+
+            var nodeTree =
+                new BinaryNode(
+                    0,
+                    new BinaryNode(
+                        1,
+                        new BinaryNode(11),
+                        new BinaryNode(12)),
+                    new BinaryNode(
+                        2,
+                        new BinaryNode(21),
+                        new BinaryNode(22)));
+
+            string serializedNodeTree = Problems1Through25.Problem3Serialize(nodeTree);
+
+            Assert.Equal(expected, serializedNodeTree);
+        }
+
+        [Fact]
+        public void Problem3Deserialize_RootIsNull_ReturnsExpectedString()
+        {
+            BinaryNode expectedNodeTree = null;
+
+            const string serializedNodeTree = "null,";
+
+            BinaryNode deserializedNodeTree = Problems1Through25.Problem3Deserialize(serializedNodeTree);
+
+            Assert.Equal(expectedNodeTree, deserializedNodeTree);
+        }
+
+        [Fact]
+        public void Problem3Deserialize_RootOnlyTree_ReturnsExpectedString()
+        {
+            var expectedNodeTree = new BinaryNode(0);
+
+            const string serializedNodeTree = "0,null,null,";
+
+            BinaryNode deserializedNodeTree = Problems1Through25.Problem3Deserialize(serializedNodeTree);
+
+            Assert.Equal(expectedNodeTree, deserializedNodeTree);
+        }
+
+        [Fact]
+        public void Problem3Deserialize_Partial2LayeredTree_ReturnsExpectedString()
+        {
+            var expectedNodeTree =
+                new BinaryNode(
+                    0,
+                    null,
+                    new BinaryNode(2));
+
+            const string serializedNodeTree = "0,null,2,null,null,";
+
+            BinaryNode deserializedNodeTree = Problems1Through25.Problem3Deserialize(serializedNodeTree);
+
+            Assert.Equal(expectedNodeTree, deserializedNodeTree);
+        }
+
+        [Fact]
+        public void Problem3Deserialize_Full2LayeredTree_ReturnsExpectedString()
+        {
+            var expectedNodeTree =
+                new BinaryNode(
+                    0,
+                    new BinaryNode(1),
+                    new BinaryNode(2));
+
+            const string serializedNodeTree = "0,1,null,null,2,null,null,";
+
+            BinaryNode deserializedNodeTree = Problems1Through25.Problem3Deserialize(serializedNodeTree);
+
+            Assert.Equal(expectedNodeTree, deserializedNodeTree);
+        }
+
+        [Fact]
+        public void Problem3Deserialize_Partial3LayeredTree_ReturnsExpectedString()
+        {
+            var expectedNodeTree =
+                new BinaryNode(
+                    0,
+                    new BinaryNode(
+                        1,
+                        new BinaryNode(11),
+                        null),
+                    new BinaryNode(2));
+
+            const string serializedNodeTree = "0,1,11,null,null,null,2,null,null,";
+
+            BinaryNode deserializedNodeTree = Problems1Through25.Problem3Deserialize(serializedNodeTree);
+
+            Assert.Equal(expectedNodeTree, deserializedNodeTree);
+        }
+
+        [Fact]
+        public void Problem3Deserialize_Full3LayeredTree_ReturnsExpectedString()
+        {
+            var expectedNodeTree =
+                new BinaryNode(
+                    0,
+                    new BinaryNode(
+                        1,
+                        new BinaryNode(11),
+                        new BinaryNode(12)),
+                    new BinaryNode(
+                        2,
+                        new BinaryNode(21),
+                        new BinaryNode(22)));
+
+            const string serializedNodeTree = "0,1,11,null,null,12,null,null,2,21,null,null,22,null,null,";
+
+            BinaryNode deserializedNodeTree = Problems1Through25.Problem3Deserialize(serializedNodeTree);
+
+            Assert.Equal(expectedNodeTree, deserializedNodeTree);
+        }
     }
 }

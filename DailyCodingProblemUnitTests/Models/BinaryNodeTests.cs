@@ -19,7 +19,7 @@ namespace DailyCodingProblemUnitTests.Models
         [Fact]
         public void Equals_N1IsNullButN2IsNotNull_ReturnsNotEqual()
         {
-            BinaryNode n1 = new BinaryNode();
+            BinaryNode n1 = new BinaryNode(0);
             BinaryNode n2 = null;
 
             Assert.False(n1 == n2);
@@ -30,7 +30,7 @@ namespace DailyCodingProblemUnitTests.Models
         public void Equals_N1IsNotNullButN2IsNull_ReturnsNotEqual()
         {
             BinaryNode n1 = null;
-            BinaryNode n2 = new BinaryNode();
+            BinaryNode n2 = new BinaryNode(0);
 
             Assert.False(n1 == n2);
             Assert.True(n1 != n2);
@@ -39,8 +39,8 @@ namespace DailyCodingProblemUnitTests.Models
         [Fact]
         public void Equals_BothNodesAreDefaultNodes_ReturnsEqual()
         {
-            BinaryNode n1 = new BinaryNode();
-            BinaryNode n2 = new BinaryNode();
+            BinaryNode n1 = new BinaryNode(0);
+            BinaryNode n2 = new BinaryNode(0);
 
             Assert.True(n1 == n2);
             Assert.False(n1 != n2);
