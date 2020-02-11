@@ -123,5 +123,21 @@ namespace DailyCodingProblem
             // If we reach this point then we tried every positive 32-bit integer
             return -1;
         }
+
+        /// <summary>
+        /// Returns the first element in a Pair
+        /// </summary>
+        public static int Problem5GetFirst(Pair pair)
+        {
+            return pair.A;
+        }
+
+        /// <summary>
+        /// Returns the last element in a Pair
+        /// </summary>
+        public static int Problem5GetLast(Pair pair)
+        {
+            return pair.B;
+        }
     }
 }
