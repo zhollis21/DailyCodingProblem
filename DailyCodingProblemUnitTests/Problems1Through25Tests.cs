@@ -8,6 +8,8 @@ namespace DailyCodingProblemUnitTests
 {
     public class Problems1Through25Tests
     {
+        #region Problem 1
+
         [Theory]
         [InlineData(9, false)]
         [InlineData(10, true)]
@@ -27,26 +29,34 @@ namespace DailyCodingProblemUnitTests
         [InlineData(24, false)]
         [InlineData(25, true)]
         [InlineData(26, false)]
-        public void Problem1_HappyPath_ReturnsCorrectList(int sum, bool expectedResult)
+        public void Problem1_RangeOfSums_ReturnsExpectedResult(int sum, bool expectedResult)
         {
             int[] numbers = new int[] { 10, 15, 3, 7 };
 
-            bool actualResult = Problems1Through25.Problem1(numbers.ToList(), sum);
+            bool actualResult = Problems1Through25.Problem1(numbers, sum);
 
             Assert.Equal(expectedResult, actualResult);
         }
+
+        #endregion
+
+        #region Problem 2
 
         [Theory]
         [InlineData(new int[] { 1, 2, 3, 4, 5 }, new int[] { 120, 60, 40, 30, 24 })]
         [InlineData(new int[] { 5, 4, 3, 2, 1 }, new int[] { 24, 30, 40, 60, 120 })]
         [InlineData(new int[] { 3, 2, 1 }, new int[] { 2, 3, 6 })]
         [InlineData(new int[] { 1, 2, 3 }, new int[] { 6, 3, 2 })]
-        public void Problem2_HappyPath_ReturnsCorrectList(int[] input, int[] expectedResult)
+        public void Problem2_HappyPath_ReturnsExpectedResult(int[] input, int[] expectedResult)
         {
-            List<int> actualResult = Problems1Through25.Problem2(input.ToList());
+            List<int> actualResult = Problems1Through25.Problem2(input);
 
             Assert.Equal(expectedResult, actualResult);
         }
+
+        #endregion
+
+        #region Problem 3
 
         [Fact]
         public void Problem3Serialize_RootIsNull_ReturnsExpectedString()
@@ -241,5 +251,24 @@ namespace DailyCodingProblemUnitTests
 
             Assert.Equal(expectedNodeTree, deserializedNodeTree);
         }
+
+        #endregion
+
+        #region Problem 4
+
+        [Theory]
+        [InlineData(new int[] { 3, 4, -1, 1 }, 2)]
+        [InlineData(new int[] { 1, 2, 0 }, 3)]
+        [InlineData(new int[] { }, 1)]
+        [InlineData(new int[] { 1, 2, 3, 7, 8, 9, 5, 4 }, 6)]
+        [InlineData(new int[] { -7, 8, -9, int.MaxValue, int.MinValue }, 1)]
+        public void Problem4_HappyPath_ReturnsExpected(int[] input, int expectedResult)
+        {
+            int actualResult = Problems1Through25.Problem4(input);
+
+            Assert.Equal(expectedResult, actualResult);
+        }
+
+        #endregion
     }
 }
