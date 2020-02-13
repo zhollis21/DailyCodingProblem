@@ -162,5 +162,34 @@ namespace DailyCodingProblem
 
             return x;
         }
+
+        /// <summary>
+        /// Given the mapping a = 1, b = 2, ... z = 26, and an encoded message, count the number of ways it can be decoded.
+        ///
+        /// For example, the message '111' would give 3, since it could be decoded as 'aaa', 'ka', and 'ak'.
+        /// </summary>
+        public static int Problem7(string encodedMessage)
+        {
+            // If we get to the bottom of the recursion we have found one possible decoding
+            if (encodedMessage.Length < 1)
+                return 1;
+
+            int waysToDecode = 0;
+
+            for (int letter = 1; letter <= 26; letter++)
+            {
+                string digits = letter.ToString();
+
+                if (digits.Length > encodedMessage.Length)
+                    return waysToDecode;
+
+                if (digits == encodedMessage.Substring(0, digits.Length))
+                {
+                    waysToDecode += Problem7(encodedMessage.Substring(digits.Length));
+                }
+            }
+
+            return waysToDecode;
+        }
     }
 }

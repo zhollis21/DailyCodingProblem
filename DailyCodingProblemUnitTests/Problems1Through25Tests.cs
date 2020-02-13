@@ -322,5 +322,24 @@ namespace DailyCodingProblemUnitTests
         }
 
         #endregion
+
+        #region Problem 7
+
+        [Theory]
+        [InlineData("0123", 0)]
+        [InlineData("1010", 1)]
+        [InlineData("111", 3)]
+        [InlineData("26", 2)]
+        [InlineData("20", 1)]
+        [InlineData("27", 1)]
+        [InlineData("2121212", 21)]
+        public void Problem7_InlineData_ReturnsExpectedString(string encodedMessage, int expectedResult)
+        {
+            int actualResult = Problems1Through25.Problem7(encodedMessage);
+
+            Assert.Equal(expectedResult, actualResult);
+        }
+
+        #endregion
     }
 }
