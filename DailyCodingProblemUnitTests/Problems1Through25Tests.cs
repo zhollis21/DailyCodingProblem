@@ -341,5 +341,16 @@ namespace DailyCodingProblemUnitTests
         }
 
         #endregion
+
+        #region Problem 8
+
+        [Theory]
+        [InlineData("0,1,null,null,0,1,1,null,null,1,null,null,0,null,null")]
+        public void Problem8_InlineData_ReturnsExpectedInt(string serializedNodeTree, int expectedResult)
+        {
+
+        }
+
+        #endregion
     }
 }
