@@ -303,5 +303,24 @@ namespace DailyCodingProblemUnitTests
         }
 
         #endregion
+
+        #region Problem 6
+
+        [Theory]
+        [InlineData(255, 255, 255, "FFFFFF")]
+        [InlineData(255, 256, 300, "FFFFFF")]
+        [InlineData(0, 0, 0, "000000")]
+        [InlineData(148, 0, 211, "9400D3")]
+        [InlineData(148, -1, 211, "9400D3")]
+        [InlineData(144, 195, 212, "90C3D4")]
+        [InlineData(212, 53, 12, "D4350C")]
+        public void Problem6_HappyPath_ReturnsExpectedString(int r, int g, int b, string expectedResult)
+        {
+            string actualResult = Problems1Through25.Problem6(r, g, b);
+
+            Assert.Equal(expectedResult, actualResult);
+        }
+
+        #endregion
     }
 }
