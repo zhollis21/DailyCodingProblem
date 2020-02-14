@@ -200,16 +200,22 @@ namespace DailyCodingProblem
         private static int FindAllUnivalSubtrees(BinaryNode node, out bool isUnivalNode)
         {
             int sumOfUnivalSubtrees = 0;
-            bool leftChildIsUnival = false, rightChildIsUnival = false;
+            bool leftChildIsUnival = true, rightChildIsUnival = true;
 
             if (node.LeftChild != null)
             {
                 sumOfUnivalSubtrees += FindAllUnivalSubtrees(node.LeftChild, out leftChildIsUnival);
+
+                if (leftChildIsUnival)
+                    leftChildIsUnival = node.Value == node.LeftChild.Value;
             }
 
             if (node.RightChild != null)
             {
                 sumOfUnivalSubtrees += FindAllUnivalSubtrees(node.RightChild, out rightChildIsUnival);
+
+                if (rightChildIsUnival)
+                    rightChildIsUnival = node.Value == node.RightChild.Value;
             }
 
             isUnivalNode = leftChildIsUnival && rightChildIsUnival;
