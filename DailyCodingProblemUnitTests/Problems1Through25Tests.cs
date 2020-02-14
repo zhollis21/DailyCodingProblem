@@ -156,7 +156,19 @@ namespace DailyCodingProblemUnitTests
         }
 
         [Fact]
-        public void Problem3Deserialize_RootIsNull_ReturnsExpectedString()
+        public void Problem3Deserialize_InvalidString_ReturnsExpectedTreeOfBinaryNodes()
+        {
+            BinaryNode expectedNodeTree = null;
+
+            const string serializedNodeTree = "Hello,1234";
+
+            BinaryNode deserializedNodeTree = Problems1Through25.Problem3Deserialize(serializedNodeTree);
+
+            Assert.Equal(expectedNodeTree, deserializedNodeTree);
+        }
+
+        [Fact]
+        public void Problem3Deserialize_RootIsNull_ReturnsExpectedTreeOfBinaryNodes()
         {
             BinaryNode expectedNodeTree = null;
 
@@ -168,7 +180,7 @@ namespace DailyCodingProblemUnitTests
         }
 
         [Fact]
-        public void Problem3Deserialize_RootOnlyTree_ReturnsExpectedString()
+        public void Problem3Deserialize_RootOnlyTree_ReturnsExpectedTreeOfBinaryNodes()
         {
             var expectedNodeTree = new BinaryNode(0);
 
@@ -180,7 +192,7 @@ namespace DailyCodingProblemUnitTests
         }
 
         [Fact]
-        public void Problem3Deserialize_Partial2LayeredTree_ReturnsExpectedString()
+        public void Problem3Deserialize_Partial2LayeredTree_ReturnsExpectedTreeOfBinaryNodes()
         {
             var expectedNodeTree =
                 new BinaryNode(
@@ -196,7 +208,7 @@ namespace DailyCodingProblemUnitTests
         }
 
         [Fact]
-        public void Problem3Deserialize_Full2LayeredTree_ReturnsExpectedString()
+        public void Problem3Deserialize_Full2LayeredTree_ReturnsExpectedTreeOfBinaryNodes()
         {
             var expectedNodeTree =
                 new BinaryNode(
@@ -212,7 +224,7 @@ namespace DailyCodingProblemUnitTests
         }
 
         [Fact]
-        public void Problem3Deserialize_Partial3LayeredTree_ReturnsExpectedString()
+        public void Problem3Deserialize_Partial3LayeredTree_ReturnsExpectedTreeOfBinaryNodes()
         {
             var expectedNodeTree =
                 new BinaryNode(
@@ -231,7 +243,7 @@ namespace DailyCodingProblemUnitTests
         }
 
         [Fact]
-        public void Problem3Deserialize_Full3LayeredTree_ReturnsExpectedString()
+        public void Problem3Deserialize_Full3LayeredTree_ReturnsExpectedTreeOfBinaryNodes()
         {
             var expectedNodeTree =
                 new BinaryNode(

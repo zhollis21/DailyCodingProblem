@@ -62,6 +62,9 @@ namespace DailyCodingProblem
             return productList;
         }
 
+        /// <summary>
+        /// Serializes a tree of BinaryNodes starting at the passed in node.
+        /// </summary>
         public static string Problem3Serialize(BinaryNode node)
         {
             if (node == null)
@@ -76,6 +79,9 @@ namespace DailyCodingProblem
             return serializedNode;
         }
 
+        /// <summary>
+        /// Deserializes a string into a tree of BinaryNodes
+        /// </summary>
         public static BinaryNode Problem3Deserialize(string serializedBinaryTree)
         {
             string[] values = serializedBinaryTree.Split(',');
@@ -241,9 +247,29 @@ namespace DailyCodingProblem
         /// </summary>
         public static long Problem9(List<int> numbers)
         {
-            long maxSum = 0;
+            if (numbers == null || numbers.Count < 1)
+                return 0;
 
-            // TODO
+            long maxSum = int.MinValue;
+
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                long sumOfIPath = numbers[i];
+
+                int childStartIndex = i + 2;
+                if (childStartIndex < numbers.Count)
+                {
+                    var childNumbers = numbers.GetRange(childStartIndex, numbers.Count - childStartIndex);
+
+                    long maxChildSum = Problem9(childNumbers);
+
+                    if (maxChildSum > 0)
+                        sumOfIPath += maxChildSum;
+                }
+
+                if (sumOfIPath > maxSum)
+                    maxSum = sumOfIPath;
+            }
 
             return maxSum;
         }
