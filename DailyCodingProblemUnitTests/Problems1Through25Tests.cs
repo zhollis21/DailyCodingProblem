@@ -1,6 +1,5 @@
 using DailyCodingProblem;
 using Xunit;
-using System.Linq;
 using System.Collections.Generic;
 using DailyCodingProblem.Models;
 
@@ -29,7 +28,7 @@ namespace DailyCodingProblemUnitTests
         [InlineData(24, false)]
         [InlineData(25, true)]
         [InlineData(26, false)]
-        public void Problem1_RangeOfSums_ReturnsExpectedResult(int sum, bool expectedResult)
+        public void Problem1_RangeOfSums_ReturnsExpectedBool(int sum, bool expectedResult)
         {
             int[] numbers = new int[] { 10, 15, 3, 7 };
 
@@ -47,7 +46,7 @@ namespace DailyCodingProblemUnitTests
         [InlineData(new int[] { 5, 4, 3, 2, 1 }, new int[] { 24, 30, 40, 60, 120 })]
         [InlineData(new int[] { 3, 2, 1 }, new int[] { 2, 3, 6 })]
         [InlineData(new int[] { 1, 2, 3 }, new int[] { 6, 3, 2 })]
-        public void Problem2_HappyPath_ReturnsExpectedResult(int[] input, int[] expectedResult)
+        public void Problem2_HappyPath_ReturnsExpectedIntArray(int[] input, int[] expectedResult)
         {
             List<int> actualResult = Problems1Through25.Problem2(input);
 
@@ -262,11 +261,45 @@ namespace DailyCodingProblemUnitTests
         [InlineData(new int[] { }, 1)]
         [InlineData(new int[] { 1, 2, 3, 7, 8, 9, 5, 4 }, 6)]
         [InlineData(new int[] { -7, 8, -9, int.MaxValue, int.MinValue }, 1)]
-        public void Problem4_HappyPath_ReturnsExpected(int[] input, int expectedResult)
+        public void Problem4_HappyPath_ReturnsExpectedInt(int[] input, int expectedResult)
         {
             int actualResult = Problems1Through25.Problem4(input);
 
             Assert.Equal(expectedResult, actualResult);
+        }
+
+        #endregion
+
+        #region Problem 5
+
+        [Theory]
+        [InlineData(3, 4)]
+        [InlineData(4, 3)]
+        [InlineData(-3, -4)]
+        [InlineData(0, 0)]
+        [InlineData(int.MaxValue, int.MinValue)]
+        public void Problem5GetFirst_HappyPath_ReturnsExpectedInt(int first, int last)
+        {
+            var pair = new Pair(first, last);
+
+            var actual = Problems1Through25.Problem5GetFirst(pair);
+
+            Assert.Equal(first, actual);
+        }
+
+        [Theory]
+        [InlineData(3, 4)]
+        [InlineData(4, 3)]
+        [InlineData(-3, -4)]
+        [InlineData(0, 0)]
+        [InlineData(int.MaxValue, int.MinValue)]
+        public void Problem5GetLast_HappyPath_ReturnsExpectedInt(int first, int last)
+        {
+            var pair = new Pair(first, last);
+
+            var actual = Problems1Through25.Problem5GetLast(pair);
+
+            Assert.Equal(last, actual);
         }
 
         #endregion
