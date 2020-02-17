@@ -125,7 +125,7 @@ namespace DailyCodingProblem
         }
 
         /// <summary>
-        /// Returns the first element in a Pair
+        /// Returns the first element in a Pair.
         /// </summary>
         public static int Problem5GetFirst(Pair pair)
         {
@@ -133,11 +133,34 @@ namespace DailyCodingProblem
         }
 
         /// <summary>
-        /// Returns the last element in a Pair
+        /// Returns the last element in a Pair.
         /// </summary>
         public static int Problem5GetLast(Pair pair)
         {
             return pair.B;
+        }
+
+        /// <summary>
+        /// Converts byte RGB values to their Hexadecimal equivalent. 
+        /// Any RGB values that are outside of the byte range will be 
+        /// rounded to the closest valid byte value.
+        /// 
+        /// For example, the input (-5, 148, 300) would return "0094FF".
+        /// </summary>
+        public static string Problem6(int r, int g, int b)
+        {
+            return $"{ToByteRange(r):X2}{ToByteRange(g):X2}{ToByteRange(b):X2}";
+        }
+
+        private static int ToByteRange(int x)
+        {
+            if (x < 0)
+                return 0;
+
+            if (x > 255)
+                return 255;
+
+            return x;
         }
     }
 }
