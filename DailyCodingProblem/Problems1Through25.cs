@@ -191,5 +191,39 @@ namespace DailyCodingProblem
 
             return waysToDecode;
         }
+
+        public static int Problem8(BinaryNode root)
+        {
+            return FindAllUnivalSubtrees(root, out bool _);
+        }
+
+        private static int FindAllUnivalSubtrees(BinaryNode node, out bool isUnivalNode)
+        {
+            int sumOfUnivalSubtrees = 0;
+            bool leftChildIsUnival = true, rightChildIsUnival = true;
+
+            if (node.LeftChild != null)
+            {
+                sumOfUnivalSubtrees += FindAllUnivalSubtrees(node.LeftChild, out leftChildIsUnival);
+
+                if (leftChildIsUnival)
+                    leftChildIsUnival = node.Value == node.LeftChild.Value;
+            }
+
+            if (node.RightChild != null)
+            {
+                sumOfUnivalSubtrees += FindAllUnivalSubtrees(node.RightChild, out rightChildIsUnival);
+
+                if (rightChildIsUnival)
+                    rightChildIsUnival = node.Value == node.RightChild.Value;
+            }
+
+            isUnivalNode = leftChildIsUnival && rightChildIsUnival;
+
+            if (isUnivalNode)
+                sumOfUnivalSubtrees++;
+
+            return sumOfUnivalSubtrees;
+        }
     }
 }

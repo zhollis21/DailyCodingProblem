@@ -341,5 +341,32 @@ namespace DailyCodingProblemUnitTests
         }
 
         #endregion
+
+        #region Problem 8
+
+        [Theory]
+        [InlineData("0,1,null,null,0,1,1,null,null,1,null,null,0,null,null", 5)]
+        [InlineData("0,null,null", 1)]
+        [InlineData("0,null,1,null,null", 1)]
+        [InlineData("0,1,null,null,null", 1)]
+        [InlineData("0,1,null,null,2,null,null", 2)]
+        [InlineData("0,0,null,null,0,null,null", 3)]
+        [InlineData("0,1,2,null,null,2,null,null,1,2,null,null,2,null,null", 4)]
+        [InlineData("2,1,2,null,null,2,null,null,2,2,null,null,2,null,null", 5)]
+        [InlineData("1,2,2,null,null,2,null,null,2,2,null,null,2,null,null", 6)]
+        [InlineData("2,2,2,null,null,2,null,null,2,2,null,null,2,null,null", 7)]
+        [InlineData("0,null,1,null,1,null,1,null,1,null,null", 4)]
+        [InlineData("0,null,1,null,2,null,null,1,2,null,null", 1)]
+        [InlineData("0,null,0,null,0,null,0,0,null,null,null", 5)]
+        public void Problem8_InlineData_ReturnsExpectedInt(string serializedNodeTree, int expectedResult)
+        {
+            var nodeTree = Problems1Through25.Problem3Deserialize(serializedNodeTree);
+
+            int actualResult = Problems1Through25.Problem8(nodeTree);
+
+            Assert.Equal(expectedResult, actualResult);
+        }
+
+        #endregion
     }
 }
