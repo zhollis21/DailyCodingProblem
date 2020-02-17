@@ -2,6 +2,7 @@ using DailyCodingProblem;
 using Xunit;
 using System.Collections.Generic;
 using DailyCodingProblem.Models;
+using System.Linq;
 
 namespace DailyCodingProblemUnitTests
 {
@@ -155,7 +156,19 @@ namespace DailyCodingProblemUnitTests
         }
 
         [Fact]
-        public void Problem3Deserialize_RootIsNull_ReturnsExpectedString()
+        public void Problem3Deserialize_InvalidString_ReturnsExpectedTreeOfBinaryNodes()
+        {
+            BinaryNode expectedNodeTree = null;
+
+            const string serializedNodeTree = "Hello,1234";
+
+            BinaryNode deserializedNodeTree = Problems1Through25.Problem3Deserialize(serializedNodeTree);
+
+            Assert.Equal(expectedNodeTree, deserializedNodeTree);
+        }
+
+        [Fact]
+        public void Problem3Deserialize_RootIsNull_ReturnsExpectedTreeOfBinaryNodes()
         {
             BinaryNode expectedNodeTree = null;
 
@@ -167,7 +180,7 @@ namespace DailyCodingProblemUnitTests
         }
 
         [Fact]
-        public void Problem3Deserialize_RootOnlyTree_ReturnsExpectedString()
+        public void Problem3Deserialize_RootOnlyTree_ReturnsExpectedTreeOfBinaryNodes()
         {
             var expectedNodeTree = new BinaryNode(0);
 
@@ -179,7 +192,7 @@ namespace DailyCodingProblemUnitTests
         }
 
         [Fact]
-        public void Problem3Deserialize_Partial2LayeredTree_ReturnsExpectedString()
+        public void Problem3Deserialize_Partial2LayeredTree_ReturnsExpectedTreeOfBinaryNodes()
         {
             var expectedNodeTree =
                 new BinaryNode(
@@ -195,7 +208,7 @@ namespace DailyCodingProblemUnitTests
         }
 
         [Fact]
-        public void Problem3Deserialize_Full2LayeredTree_ReturnsExpectedString()
+        public void Problem3Deserialize_Full2LayeredTree_ReturnsExpectedTreeOfBinaryNodes()
         {
             var expectedNodeTree =
                 new BinaryNode(
@@ -211,7 +224,7 @@ namespace DailyCodingProblemUnitTests
         }
 
         [Fact]
-        public void Problem3Deserialize_Partial3LayeredTree_ReturnsExpectedString()
+        public void Problem3Deserialize_Partial3LayeredTree_ReturnsExpectedTreeOfBinaryNodes()
         {
             var expectedNodeTree =
                 new BinaryNode(
@@ -230,7 +243,7 @@ namespace DailyCodingProblemUnitTests
         }
 
         [Fact]
-        public void Problem3Deserialize_Full3LayeredTree_ReturnsExpectedString()
+        public void Problem3Deserialize_Full3LayeredTree_ReturnsExpectedTreeOfBinaryNodes()
         {
             var expectedNodeTree =
                 new BinaryNode(
@@ -363,6 +376,27 @@ namespace DailyCodingProblemUnitTests
             var nodeTree = Problems1Through25.Problem3Deserialize(serializedNodeTree);
 
             int actualResult = Problems1Through25.Problem8(nodeTree);
+
+            Assert.Equal(expectedResult, actualResult);
+        }
+
+        #endregion
+
+        #region Problem 9
+
+        [Theory]
+        [InlineData(new int[] { 2, 4, 6, 2, 5 }, 13)]
+        [InlineData(new int[] { 5, 1, 1, 5 }, 10)]
+        [InlineData(new int[] { -5 }, -5)]
+        [InlineData(new int[] { -1, -2, -3, 4, -5 }, 4)]
+        [InlineData(new int[] { 2, 10, 5, 5, 10, 4 }, 20)]
+        [InlineData(new int[] { -7, -5, -1, -3, -10 }, -1)]
+        [InlineData(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 25)]
+        [InlineData(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, 30)]
+        [InlineData(new int[] { 5, 1, 1, 5, 1, 5, 1, -1, 5 }, 20)]
+        public void Problem9_InlineData_ReturnsExpectedLong(int[] numbers, long expectedResult)
+        {
+            long actualResult = Problems1Through25.Problem9(numbers.ToList());
 
             Assert.Equal(expectedResult, actualResult);
         }
