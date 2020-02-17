@@ -2,11 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace DailyCodingProblem
 {
     public class Problems1Through25
     {
+        #region Problem 1
+
         /// <summary>
         /// Given a list of numbers and a number k, return whether 
         /// any two numbers from the list add up to k. 
@@ -32,6 +35,10 @@ namespace DailyCodingProblem
             Console.WriteLine($"No two numbers in the listed added up to {sum}");
             return false;
         }
+
+        #endregion
+
+        #region Problem 2
 
         /// <summary>
         /// Given an array of integers, return a new array such that each element 
@@ -61,6 +68,10 @@ namespace DailyCodingProblem
 
             return productList;
         }
+
+        #endregion
+
+        #region Problem 3
 
         /// <summary>
         /// Serializes a tree of BinaryNodes starting at the passed in node.
@@ -108,6 +119,10 @@ namespace DailyCodingProblem
             return index;
         }
 
+        #endregion
+
+        #region Problem 4
+
         /// <summary>
         /// Given an array of integers, find the first missing positive integer in 
         /// linear time and constant space. In other words, find the lowest positive 
@@ -130,6 +145,10 @@ namespace DailyCodingProblem
             return -1;
         }
 
+        #endregion
+
+        #region Problem 5
+
         /// <summary>
         /// Returns the first element in a Pair.
         /// </summary>
@@ -145,6 +164,10 @@ namespace DailyCodingProblem
         {
             return pair.B;
         }
+
+        #endregion
+
+        #region Problem 6
 
         /// <summary>
         /// Converts byte RGB values to their Hexadecimal equivalent. 
@@ -168,6 +191,10 @@ namespace DailyCodingProblem
 
             return x;
         }
+
+        #endregion
+
+        #region Problem 7
 
         /// <summary>
         /// Given the mapping a = 1, b = 2, ... z = 26, and an encoded message, count the number of ways it can be decoded.
@@ -197,6 +224,10 @@ namespace DailyCodingProblem
 
             return waysToDecode;
         }
+
+        #endregion
+
+        #region Problem 8
 
         /// <summary>
         /// A unival tree (which stands for "universal value") is a tree where all nodes under it have the same value. 
@@ -238,6 +269,8 @@ namespace DailyCodingProblem
             return sumOfUnivalSubtrees;
         }
 
+        #endregion
+
         #region Problem 9
 
         /// <summary>
@@ -272,6 +305,21 @@ namespace DailyCodingProblem
             }
 
             return maxSum;
+        }
+
+        #endregion
+
+        #region Problem 10
+
+        /// <summary>
+        /// A job scheduler which takes in a function and an integer, and calls the function after the integer of milliseconds.
+        /// </summary>
+        public static void Problem10(Action function, int milliseconds)
+        {
+            Thread.Sleep(
+                Math.Max(milliseconds, 0));
+
+            function.Invoke();
         }
 
         #endregion

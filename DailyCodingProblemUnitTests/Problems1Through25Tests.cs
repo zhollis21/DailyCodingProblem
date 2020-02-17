@@ -3,6 +3,7 @@ using Xunit;
 using System.Collections.Generic;
 using DailyCodingProblem.Models;
 using System.Linq;
+using System;
 
 namespace DailyCodingProblemUnitTests
 {
@@ -399,6 +400,33 @@ namespace DailyCodingProblemUnitTests
             long actualResult = Problems1Through25.Problem9(numbers.ToList());
 
             Assert.Equal(expectedResult, actualResult);
+        }
+
+        #endregion
+
+        #region Problem 10
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(0)]
+        [InlineData(3000)]
+        [InlineData(5000)]
+        [InlineData(10_000)]
+        public void Problem10_InlineData_ReturnsAfterExpectedWait(int expectedWait)
+        {
+            var startTime = DateTime.UtcNow;
+
+            // Simple function to pass to problem 10
+            Action f = () => Console.WriteLine($"Testing Problem 10 with {expectedWait} milliseconds");
+
+            Problems1Through25.Problem10(f, expectedWait);
+
+            var endTime = DateTime.UtcNow;
+
+            TimeSpan totalTime = endTime - startTime;
+            TimeSpan minimumExpectedTime = TimeSpan.FromMilliseconds(expectedWait);
+
+            Assert.True(totalTime >= minimumExpectedTime);
         }
 
         #endregion
