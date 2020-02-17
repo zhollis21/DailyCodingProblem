@@ -312,7 +312,7 @@ namespace DailyCodingProblem
         #region Problem 10
 
         /// <summary>
-        /// Implement a job scheduler which takes in a function f and an integer n, and calls f after n milliseconds.
+        /// A job scheduler which takes in a function and an integer, and calls the function after the integer of milliseconds.
         /// </summary>
         public static void Problem10(Action function, int milliseconds)
         {
