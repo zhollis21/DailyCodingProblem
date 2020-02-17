@@ -275,5 +275,22 @@ namespace DailyCodingProblem
         }
 
         #endregion
+
+        #region Problem 11
+
+        /// <summary>
+        /// Implement an autocomplete system. That is, given a query string s and a set of all possible query strings, return all strings in the set that have s as a prefix.
+        /// <para/>
+        /// For example, given the query string de and the set of strings[dog, deer, deal], return [deer, deal].
+        /// </summary>
+        public static string[] Problem11(string query, string[] words)
+        {
+            if (string.IsNullOrEmpty(query) || words == null)
+                return new string[] { };
+
+            return words.Where(w => w.StartsWith(query)).ToArray();
+        }
+
+        #endregion
     }
 }

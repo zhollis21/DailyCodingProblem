@@ -402,5 +402,24 @@ namespace DailyCodingProblemUnitTests
         }
 
         #endregion
+
+        #region Problem 11
+
+        [Theory]
+        [InlineData(null, new string[] { }, new string[] { })]
+        [InlineData("", new string[] { }, new string[] { })]
+        [InlineData("h", null, new string[] { })]
+        [InlineData("h", new string[] { }, new string[] { })]
+        [InlineData("hi", new string[] { "h", "j", "ohio" }, new string[] { })]
+        [InlineData("hi", new string[] { "h", "hi", "Hi", "hI", "hiya" }, new string[] { "hi", "hiya" })]
+        [InlineData("hi", new string[] { "hi", "ohio", "hiya", "high", "hit" }, new string[] { "hi", "hiya", "high", "hit" })]
+        public void Problem11_InlineData_ReturnsExpectedLong(string query, string[] words, string[] expectedMatches)
+        {
+            var actualMatches = Problems1Through25.Problem11(query, words);
+
+            Assert.Equal(expectedMatches, actualMatches);
+        }
+
+        #endregion
     }
 }
